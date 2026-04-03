@@ -1,21 +1,20 @@
 class Solution:
 
     def encode(self, strs: List[str]) -> str:
-        encoded = ""
-        for string in strs:
-            encoded += f"{len(string)}#{string}"
-        return encoded
+        encoded = []
+        for _str in strs:
+            encoded.append(f"{len(_str)}#{_str}")
+        return "".join(encoded)
 
     def decode(self, s: str) -> List[str]:
-        res = []
+        result = []
         i = 0
         while i < len(s):
             j = i
             while s[j] != "#":
-                # print(f"s[j-1] is {s[j-1]} isdigit: {s[j-1].isdigit()}")
-                j+=1
-            
+                j += 1
             length = int(s[i:j])
-            res.append(s[j + 1: j + 1 + length])
-            i = j + 1 + length
-        return res
+            i = j + 1
+            result.append(s[i:i + length])
+            i += length
+        return result
